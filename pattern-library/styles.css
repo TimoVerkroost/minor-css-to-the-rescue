@@ -1,0 +1,51 @@
+body {
+    font-family: Verdana, sans-serif;
+}
+
+.component {
+    display: block;
+    margin: 3em 0;
+}
+
+/* Login */
+form {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(236, 240, 241,1.0);
+    color: rgba(52, 73, 94,1.0);
+    width: 100%;
+    max-width: 30em;
+    padding: 1em;
+    box-sizing: border-box;
+    border-radius: 0.7em;
+}
+
+    form label {
+    }
+
+    form input,
+    form textarea {
+        padding: 0.5em;
+        margin: 0.5em 0 1em;
+        font-size: 1em;
+    }
+
+    form textarea {
+        min-height: 8em;
+    }
+
+button[type="submit"] {
+    font-size: 1em;
+    padding: 1em;
+    margin: 0.5em 0;
+    background-color: rgba(46, 204, 113,1.0);
+    border-radius: 0.5em;
+    color: rgba(236, 240, 241,1.0);
+    border: none;
+    transition: background-color 0.5s ease;
+    cursor: pointer;
+}
+
+    button[type="submit"]:hover {
+        background-color: rgba(46, 204, 113,0.7);
+    }
