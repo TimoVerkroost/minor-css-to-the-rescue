@@ -1,5 +1,23 @@
+html,
 body {
     font-family: Verdana, sans-serif;
+    height: 100%;
+}
+
+img,
+object,
+video,
+iframe {
+   max-width: 100%;
+}
+
+a {
+    color: rgba(52, 152, 219,1.0);
+    transition: color 0.5s ease;
+}
+
+a:hover {
+    color: rgba(26, 188, 156,1.0);
 }
 
 .component {
@@ -10,7 +28,7 @@ body {
 /* Login */
 form {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     background-color: rgba(236, 240, 241,1.0);
     color: rgba(52, 73, 94,1.0);
     width: 100%;
@@ -20,7 +38,17 @@ form {
     border-radius: 0.7em;
 }
 
-    form label {
+    form label,
+    form a {
+        flex-basis: 100%;
+    }
+
+    form a {
+        margin-bottom: 0.5em;
+    }
+
+    form label[for="field-stay-logged-in"] {
+        flex-basis: auto;
     }
 
     form input,
@@ -28,6 +56,12 @@ form {
         padding: 0.5em;
         margin: 0.5em 0 1em;
         font-size: 1em;
+        flex-basis: 100%;
+    }
+
+    form input[type="checkbox"] {
+        flex-basis: auto;
+        margin: 0 .5em 0 0;
     }
 
     form textarea {
