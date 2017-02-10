@@ -2,7 +2,7 @@ html,
 body {
     font-family: Verdana, sans-serif;
     min-height: 100%;
-    background-color: #3A3042;
+    background-color: #2c3e50;
     color: #ECEBE4;
     line-height: 1.2;
 }
@@ -10,6 +10,7 @@ body {
 body {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
     body > h1 {
@@ -35,8 +36,13 @@ a {
 .component {
     display: flex;
     align-items: center;
-    margin: 3em 0;
+    margin: 1em 0;
+    flex-basis: 100%;
 }
+
+    .component > * {
+        margin: 0 auto;
+    }
 
 /* Login */
 form {
@@ -45,9 +51,8 @@ form {
     background-color: #5C80BC;
     width: 100%;
     max-width: 30em;
-    padding: 1em;
+    padding: 1.5em 1em 1em;
     box-sizing: border-box;
-    border-radius: 0.7em;
 }
 
     form label,
@@ -87,7 +92,6 @@ button[type="submit"] {
     padding: 1em 2em;
     margin: 0.5em 0 0 auto;
     background-color: #C6D8AF;
-    border-radius: 0.5em;
     color: #3A3042;
     border: none;
     transition: background-color 0.5s ease;
@@ -100,7 +104,6 @@ button[type="submit"] {
 
 /* Figure */
 figure {
-    border-radius: 0.2em;
     max-width: 20em;
     margin: 0;
     padding: 1em;
@@ -113,10 +116,8 @@ figure {
     }
 
 /* Chat */
-
 .chat {
     border: 0.3em solid #ECEBE4;
-    border-radius: 0.7em;
     max-width: 30em;
 }
 
@@ -128,7 +129,6 @@ ol[role="chat"] {
     max-height: 15em;
     overflow-y: scroll;
     background-color: #3A3042;
-    border-radius: 0.7em 0.7em 0 0 ;
     border: 1em solid #3A3042;
     border-top: 0;
     border-bottom: 0;
@@ -137,7 +137,6 @@ ol[role="chat"] {
 
     ol[role="chat"] + form {
         border-top: 0.3em solid #ECEBE4;
-        border-radius: 0 0 0.7em 0.7em;
         background-color: #3A3042;
     }
 
@@ -165,13 +164,13 @@ ol[role="chat"] {
 
     ol[role="chat"] li footer p {
         font-style: italic;
+        font-size: 0.6em;
     }
 
     ol[role="chat"] li p[data-status="READ"] {
         display: inline-block;
         padding: 0.5em;
         margin: 0;
-        border-radius: 0.7em;
         background-color: #2ecc71;
         color: #ECEBE4;
         font-style: normal;
@@ -181,14 +180,12 @@ ol[role="chat"] {
         display: inline-block;
         padding: 0.5em;
         margin: 0;
-        border-radius: 0.7em;
         background-color: #EE6352;
         color: #ECEBE4;
         font-style: normal;
     }
 
 /* Nav */
-/* Regular styling */
 nav {
     display: flex;
     flex-wrap: wrap;
@@ -252,13 +249,160 @@ nav {
 fieldset {
     border: 0;
     padding: 0;
-    display: flex;
-    flex-basis: 100%;
-    flex-wrap: wrap;
 }
 
     fieldset legend {
         margin-bottom: 1em;
         padding: 0;
+    }
+
+    fieldset div {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+            fieldset div label {
+                flex-grow: 1;
+                display: flex;
+                flex-wrap: wrap;
+                text-align: center;
+                cursor: pointer;
+            }
+
+                fieldset div label span {
+                    flex-basis: 100%;
+                }
+
+                fieldset div label svg {
+                    opacity: 0.5;
+                    min-width: 3em;
+                    max-width: 3em;
+                    flex-basis: 100%;
+                    align-self: flex-start;
+                    margin: 0.5em auto;
+                }
+
+                    fieldset div label input[name="rating"] {
+                        display: none;
+                    }
+
+                    fieldset div label input:checked + svg {
+                        opacity: 1;
+                    }
+
+/* Media item */
+article.media-item {
+    max-width: 30em;
+    padding: 1em 1em 1.5em;
+    background-color: #ECEBE4;
+    color: #3A3042;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+    article.media-item > h1 {
+        padding: 0.5em;
+        margin-top: 0;
+        background-color: #5C80BC;
+        font-size: 1.3em;
         flex-basis: 100%;
     }
+
+        article.media-item h1 > a {
+            color: #ECEBE4;
+            text-decoration: none;
+        }
+
+    article.media-item > img {
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: 0;
+        margin-right: 1em;
+        height: 100%;
+        max-width: min-content;
+    }
+
+    article.media-item > p {
+        flex-grow: 2;
+        flex-shrink: 0;
+        flex-basis: 60%;
+    }
+
+    article.media-item > p:first-of-type {
+        margin-top: 0;
+    }
+
+/* Step indicator */
+nav[role="step-indicator"] {
+    max-width: 35em;
+    padding: 1em;
+    background-color: #ECEBE4;
+}
+
+    nav[role="step-indicator"] > h1 {
+        margin-bottom: 1em;
+        font-size: 1.3em;
+        text-transform: uppercase;
+        color: #3A3042;
+    }
+
+    nav[role="step-indicator"] > progress {
+        width: 100%;
+        height: 2em;
+        border: 0;
+        background-color: #fff;
+    }
+
+        nav[role="step-indicator"] > progress::-webkit-progress-bar {
+            background-color: #EE6352;
+        }
+        nav[role="step-indicator"] > progress::-webkit-progress-value {
+            background-color: #C6D8AF;
+        }
+
+    nav[role="step-indicator"] > ol {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0;
+        margin-top: 2em;
+        list-style-type: none;
+    }
+
+        nav[role="step-indicator"] ol > li {
+            padding: 1em 1.5em;
+            background-color: #ECEBE4;
+            text-align: center;
+            flex-grow: 1;
+            color: #3A3042;
+        }
+
+        nav[role="step-indicator"] ol > li[status="done"] {
+            background-color: #C6D8AF;
+        }
+
+        nav[role="step-indicator"] ol > li[status="current"] {
+            background-color: #5C80BC;
+            color: #ECEBE4;
+        }
+
+        nav[role="step-indicator"] ol > li[status="progress"] {
+            background-color: #EE6352;
+            color: #ECEBE4;
+        }
+
+            nav[role="step-indicator"] ol li > a {
+                color: currentColor;
+                text-decoration: none;
+            }
+
+[aria-label="Address, current step"] {
+    color: #27ae60;
+    font-weight: 800;
+}
+
+/* Sources
+- Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+- Progress bar styling: https://css-tricks.com/html5-progress-element/
+ */
