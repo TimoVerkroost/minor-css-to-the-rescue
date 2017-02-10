@@ -268,6 +268,15 @@ fieldset {
                 cursor: pointer;
             }
 
+                fieldset div label:hover svg {
+                    -webkit-animation-duration: 1s;
+                    animation-duration: 1s;
+                    -webkit-animation-fill-mode: both;
+                    animation-fill-mode: both;
+                    -webkit-animation-name: shake;
+                    animation-name: shake;
+                }
+
                 fieldset div label span {
                     flex-basis: 100%;
                 }
@@ -396,13 +405,49 @@ nav[role="step-indicator"] {
             }
 
 [aria-label="Address, current step"] {
-    color: #27ae60;
+    color: #5C80BC;
     font-weight: 800;
+}
+
+/* Keyframe animations */
+@-webkit-keyframes shake {
+    from, to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+
+    10%, 30%, 50%, 70%, 90% {
+        -webkit-transform: translate3d(-5px, 0, 0);
+        transform: translate3d(-5px, 0, 0);
+    }
+
+    20%, 40%, 60%, 80% {
+        -webkit-transform: translate3d(5px, 0, 0);
+        transform: translate3d(5px, 0, 0);
+    }
+}
+
+@keyframes shake {
+    from, to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+
+    10%, 30%, 50%, 70%, 90% {
+        -webkit-transform: translate3d(-5px, 0, 0);
+        transform: translate3d(-5px, 0, 0);
+    }
+
+    20%, 40%, 60%, 80% {
+        -webkit-transform: translate3d(5px, 0, 0);
+        transform: translate3d(5px, 0, 0);
+    }
 }
 
 /* Sources
 - CSS organizer: http://csscomb.com/online
 - Autoprefixer tool: http://www.cssdrive.com/cssautoprefixer/
+- CSS animations: https://daneden.github.io/animate.css/
 - Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 - Progress bar styling: https://css-tricks.com/html5-progress-element/
  */
