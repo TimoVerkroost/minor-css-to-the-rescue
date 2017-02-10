@@ -124,7 +124,7 @@ figure {
 ol[role="chat"] {
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding: 1em 0 0;
     max-width: 100%;
     max-height: 15em;
     overflow-y: scroll;
@@ -132,7 +132,6 @@ ol[role="chat"] {
     border: 1em solid #3A3042;
     border-top: 0;
     border-bottom: 0;
-    padding-top: 1em;
 }
 
     ol[role="chat"] + form {
