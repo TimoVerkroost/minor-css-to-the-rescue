@@ -78,6 +78,16 @@ form textarea {
     color: #3A3042;
 }
 
+form input:focus,
+form textarea:focus {
+    outline-color: #2ECC71;
+}
+
+form input:invalid,
+form textarea:invalid {
+    outline-color: #EE6352;
+}
+
 form input[type="checkbox"] {
     flex-basis: auto;
     margin: 0 .5em 0 0;
@@ -93,13 +103,20 @@ button[type="submit"] {
     margin: 0.5em 0 0 auto;
     background-color: #C6D8AF;
     color: #3A3042;
-    border: none;
-    transition: background-color 0.5s ease;
+    transition: background-color 0.5s ease, color 0.5s ease;
     cursor: pointer;
+    border:0.2em solid #C6D8AF;
 }
 
-button[type="submit"]:hover {
-    background-color: #ECEBE4;
+button[type="submit"]:hover,
+button[type="submit"]:focus {
+    background-color: transparent;
+    border:0.2em solid #C6D8AF;
+    color: currentColor;
+}
+
+button[type="submit"]:focus {
+    outline-color: #2ECC71;
 }
 
 /* Figure */
