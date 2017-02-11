@@ -427,17 +427,25 @@ nav[role="step-indicator"] > ol {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    padding: 0;
     margin-top: 2em;
+    font-size: 0.6em;
     list-style-type: none;
+    padding: 0;
 }
 
 nav[role="step-indicator"] ol > li {
-    padding: 1em 1.5em;
+    padding: 1em 1em;
     background-color: #ECEBE4;
-    text-align: center;
+    text-align: left;
     flex-grow: 1;
     color: #3A3042;
+    width: 25%;
+    box-sizing: border-box;
+    border-left:0.2em solid #3A3042;
+}
+
+nav[role="step-indicator"] ol > li:first-of-type {
+    border-left:none;
 }
 
 nav[role="step-indicator"] ol > li[status="done"] {
