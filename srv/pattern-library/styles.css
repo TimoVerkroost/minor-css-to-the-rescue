@@ -63,14 +63,8 @@ form[validationCheck="yes"]:valid::after {
     padding: 1em;
 }
 
-form[validationCheck="yes"]:invalid::after {
-    content: "\2716  1 of meerder velden zijn niet goed ingevuld, check het formulier.";
-    background-color: #F8B707;
-    color: #28292D;
-    display: block;
-    width: 100%;
-    margin-top: 1em;
-    padding: 1em;
+form[validationCheck="yes"] input:invalid {
+    background-color: rgb(102, 102, 102);
 }
 
 .login {
@@ -113,22 +107,22 @@ textarea {
 }
 
 ::-webkit-input-placeholder {
-    color: #666666;
+    color: rgba(244, 244, 244, 0.5);
     font-weight: 300;
 }
 
 :-moz-placeholder { /* Firefox 18- */
-    color: #666666;
+    color: rgba(244, 244, 244, 0.5);
     font-weight: 300;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
-    color: #666666;
+    color: rgba(244, 244, 244, 0.5);
     font-weight: 300;
 }
 
 :-ms-input-placeholder {
-    color: #666666;
+    color: rgba(244, 244, 244, 0.5);
     font-weight: 300;
 }
 
@@ -191,7 +185,6 @@ button[type="submit"]:focus {
     outline-color: #2ECC71;
 }
 
-/* Figure */
 figure {
     max-width: 100vw;
     max-height: 100vh;
@@ -235,8 +228,189 @@ figure footer {
     text-align: right;
 }
 
+nav {
+    display: flex;
+    flex-wrap: wrap;
+}
 
-/* Chat */
+nav h1 {
+    flex-basis: 100%;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    text-align: left;
+    position: relative;
+    transition: background-color 0.5s ease;
+    background-color: rgb(40, 41, 45);
+    flex-basis: 100%;
+}
+
+nav ul li a:hover,
+nav ul li a:focus
+{
+    background-color: #EE6352;
+}
+
+nav ul li a {
+    text-decoration: none;
+    display: block;
+    padding: 1em;
+    color: #ECEBE4;
+}
+
+nav ul li > ul {
+    display: none;
+    position: static;
+    z-index: 10;
+    width: 100%;
+    font-size: 0.8em;
+    box-sizing: border-box;
+    background-color: rgb(102, 102, 102);
+}
+
+nav ul li a:hover + ul,
+nav ul li a:focus + ul,
+nav ul li:hover a + ul
+{
+    display: block;
+}
+
+nav ul li ul li {
+    background-color: #666666;
+}
+
+nav ul li > ul li a {
+    padding-left: 2.5em;
+}
+
+fieldset {
+    border: 0;
+    padding: 0;
+}
+
+fieldset legend {
+    margin-bottom: 1em;
+    padding: 0;
+}
+
+fieldset div {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+fieldset div label {
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    cursor: pointer;
+}
+
+fieldset div label:hover svg {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-name: shake;
+    animation-name: shake;
+}
+
+fieldset div label span {
+    flex-basis: 100%;
+}
+
+fieldset div label svg {
+    opacity: 0.5;
+    min-width: 3em;
+    max-width: 3em;
+    flex-basis: 100%;
+    align-self: flex-start;
+    margin: 0.5em auto;
+}
+
+fieldset div label input[name="rating"] {
+    display: none;
+}
+
+fieldset div label input:checked + svg {
+    opacity: 1;
+}
+
+article.media-item {
+    max-width: 30em;
+    color: #3A3042;
+    flex: 1 1 auto;
+    align-items: flex-start;
+    position: relative;
+    padding: 1em;
+    border-bottom: 1px solid #666666;
+}
+
+article.media-item:nth-of-type(n+2) p {
+    display: none;
+}
+
+article.media-item:nth-of-type(even) {
+    background-color: #F9F9F9;
+}
+
+article.media-item:nth-of-type(n+2) img {
+    width: 20%;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+article.media-item:nth-of-type(n+2) h1 {
+    width: 78%;
+    display: inline-block;
+    padding:0 0 0 1%;
+    margin: 0;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+
+article.media-item > h1 {
+    padding: 0.5em 0.7em 0;
+    margin-top: 0;
+    font-size: 1.3em;
+    flex-basis: 100%;
+}
+
+article.media-item h1 > a {
+    color: #3A3042;
+    text-decoration: none;
+}
+
+article.media-item h1 > a::after {
+    content: "";
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left:0;
+    right:0;
+}
+
+article.media-item > img {
+    margin: 0 auto;
+    flex-basis: 100%;
+}
+
+article.media-item > p {
+    padding: 0 1em;
+}
+
+article.media-item > p:first-of-type {
+    margin-top: 0;
+}
+
 .chat {
     border: 0.1em solid #43484C;
     border-top: 1.5em solid #43484C;
@@ -327,195 +501,6 @@ ol[role="chat"] li p[data-status="DELIVERED"]::before {
     letter-spacing: -0.2em;
 }
 
-/* Nav */
-nav {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-nav h1 {
-    flex-basis: 100%;
-}
-
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    flex-basis: 100%;
-    background-color: #5C80BC;
-}
-
-nav ul li {
-    flex-grow: 1;
-    text-align: center;
-    position: relative;
-    transition: background-color 0.5s ease;
-}
-
-nav ul li a:hover,
-nav ul li a:focus
-{
-    background-color: #EE6352;
-}
-
-nav ul li a {
-    text-decoration: none;
-    display: block;
-    padding: 1em;
-    min-width: 8em;
-    color: #ECEBE4;
-}
-
-nav ul li > ul {
-    display: none;
-    position: absolute;
-    z-index: 10;
-    top:100%;
-    width: 100%;
-    font-size: 0.8em;
-    box-sizing: border-box;
-    border-left: 0.2em solid #EE6352;
-    border-right: 0.2em solid #EE6352;
-    border-bottom: 0.2em solid #EE6352;
-}
-
-nav ul li a:hover + ul,
-nav ul li a:focus + ul,
-nav ul li:hover a + ul
-{
-    display: block;
-}
-
-nav ul li > ul li {
-    text-align: left;
-}
-
-/* Rating */
-
-fieldset {
-    border: 0;
-    padding: 0;
-}
-
-fieldset legend {
-    margin-bottom: 1em;
-    padding: 0;
-}
-
-fieldset div {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-fieldset div label {
-    flex-grow: 1;
-    display: flex;
-    flex-wrap: wrap;
-    text-align: center;
-    cursor: pointer;
-}
-
-fieldset div label:hover svg {
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-    -webkit-animation-name: shake;
-    animation-name: shake;
-}
-
-fieldset div label span {
-    flex-basis: 100%;
-}
-
-fieldset div label svg {
-    opacity: 0.5;
-    min-width: 3em;
-    max-width: 3em;
-    flex-basis: 100%;
-    align-self: flex-start;
-    margin: 0.5em auto;
-}
-
-fieldset div label input[name="rating"] {
-    display: none;
-}
-
-fieldset div label input:checked + svg {
-    opacity: 1;
-}
-
-/* Media item */
-article.media-item {
-    max-width: 30em;
-    color: #3A3042;
-    flex: 1 1 auto;
-    align-items: flex-start;
-    position: relative;
-    padding: 1em;
-    border-bottom: 1px solid #666666;
-}
-
-article.media-item:nth-of-type(n+2) p {
-    display: none;
-}
-
-article.media-item:nth-of-type(even) {
-    background-color: #F9F9F9;
-}
-
-article.media-item:nth-of-type(n+2) img {
-    width: 20%;
-    display: inline-block;
-    box-sizing: border-box;
-}
-
-article.media-item:nth-of-type(n+2) h1 {
-    width: 78%;
-    display: inline-block;
-    padding:0 0 0 1%;
-    margin: 0;
-    vertical-align: top;
-    box-sizing: border-box;
-}
-
-article.media-item > h1 {
-    padding: 0.5em 0.7em 0;
-    margin-top: 0;
-    font-size: 1.3em;
-    flex-basis: 100%;
-}
-
-article.media-item h1 > a {
-    color: #3A3042;
-    text-decoration: none;
-}
-
-article.media-item h1 > a::after {
-    content: "";
-    position: absolute;
-    top:0;
-    bottom: 0;
-    left:0;
-    right:0;
-}
-
-article.media-item > img {
-    margin: 0 auto;
-    flex-basis: 100%;
-}
-
-article.media-item > p {
-    padding: 0 1em;
-}
-
-article.media-item > p:first-of-type {
-    margin-top: 0;
-}
-
-/* Step indicator */
 nav[role="step-indicator"] {
     max-width: 35em;
     padding: 1em;
@@ -592,8 +577,37 @@ nav[role="step-indicator"] ol li > a {
     font-weight: 800;
 }
 
+.loader {
+    background-color: transparent;
+    animation: spinner-loader 1s infinite linear;
+    text-indent: 200%;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0.5em;
+}
+
+.loader.line {
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    border-top: 0.2em solid #EE6352;
+}
+
+.loader.filled {
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    background: rgb(238,99,82);
+    background: -moz-linear-gradient(left,  rgba(238,99,82,1) 0%, rgba(238,99,82,1) 50%, rgba(248,183,7,1) 51%, rgba(248,183,7,1) 100%);
+    background: -webkit-linear-gradient(left,  rgba(238,99,82,1) 0%,rgba(238,99,82,1) 50%,rgba(248,183,7,1) 51%,rgba(248,183,7,1) 100%);
+    background: linear-gradient(to right,  rgba(238,99,82,1) 0%,rgba(238,99,82,1) 50%,rgba(248,183,7,1) 51%,rgba(248,183,7,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ee6352', endColorstr='#f8b707',GradientType=1 );
+    
+}
+
 /* Keyframe animations */
-@-webkit-keyframes shake {
+
+@keyframes shake {
     from, to {
         -webkit-transform: translate3d(0, 0, 0);
         transform: translate3d(0, 0, 0);
@@ -610,20 +624,14 @@ nav[role="step-indicator"] ol li > a {
     }
 }
 
-@keyframes shake {
-    from, to {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
+@keyframes spinner-loader {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
     }
-    
-    10%, 30%, 50%, 70%, 90% {
-        -webkit-transform: translate3d(-5px, 0, 0);
-        transform: translate3d(-5px, 0, 0);
-    }
-    
-    20%, 40%, 60%, 80% {
-        -webkit-transform: translate3d(5px, 0, 0);
-        transform: translate3d(5px, 0, 0);
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
     }
 }
 
