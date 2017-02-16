@@ -1,5 +1,16 @@
 /* Load font form Google Fonts, can do it local if needed */
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,700');
+
+@font-face {
+    font-family: Ampersand;
+    src:
+            local('Baskerville-Italic'),
+            local('GoudyOldStyleT-Italic'),
+            local('Garamond-Italic'),
+            local('Palatino-Italic');
+    unicode-range: U+26;
+}
+
 html,
 body {
     font-family: 'Roboto', sans-serif;
@@ -19,6 +30,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     padding: 0 1em;
+    position: relative;
 }
 
 body > h1 {
@@ -39,8 +51,16 @@ a {
     transition: color .5s ease;
 }
 
+h2 > a {
+    color: rgb(39, 41, 43);
+}
+
 p {
     max-width: 40em;
+}
+
+h2 {
+    font-family: Ampersand, 'Roboto', sans-serif;
 }
 
 form {
@@ -168,6 +188,7 @@ figure {
 
 figure a {
     color: rgb(236, 235, 228);
+    border: 1.3em solid transparent;
 }
 
 figure p {
@@ -349,6 +370,19 @@ fieldset label {
     border: .1em solid rgb(98, 196, 139);
 }
 
+.rating span {
+    transform: scale(0);
+    transition: .5s cubic-bezier(.54,-0.5,.41,1.34) transform;
+}
+
+.rating label:hover > span {
+    transform: scale(1);
+}
+
+.rating input:focus + label > span {
+    transform: scale(1);
+}
+
 fieldset label:hover svg {
     animation-duration: 1s;
     animation-fill-mode: both;
@@ -477,6 +511,8 @@ article.media-item:first-of-type > p {
     background-color: rgb(244, 244, 244);
     border-top: 0;
     border-bottom: 0;
+    max-height: 15em;
+    overflow: scroll;
 }
 
 .chat ol + form {
@@ -570,7 +606,7 @@ nav.step-indicator > progress {
     width: 100%;
     height: 2em;
     border: 0;
-    background-color: rgb(98, 196, 139);
+    background-color: rgb(102, 102, 102));
 }
 
 nav.step-indicator > progress::-webkit-progress-bar {
@@ -586,43 +622,84 @@ nav.step-indicator ol {
     flex: 0 1 auto;
     width: 100%;
     margin-top: 2em;
-    font-size: .6em;
+    font-size: 1em;
     list-style-type: none;
     padding: 0;
 }
 
+nav.step-indicator a {
+    padding: 0;
+}
+
+nav.step-indicator a:hover,
+nav.step-indicator a:focus {
+    background-color: inherit;
+    outline-color: rgb(238, 99, 82);
+}
+
 nav.step-indicator li {
-    padding: 1em 1em;
     background-color: rgb(236, 235, 228);
     text-align: left;
     flex-grow: 1;
-    color: rgb(58, 48, 66);
-    width: 25%;
+    color: rgb(236, 235, 228);
     box-sizing: border-box;
-    border-left: .2em solid rgb(58, 48, 66);
+    position: relative;
+    padding: .5em;
+    border-bottom: .1em solid rgb(255, 255, 255);
 }
 
-nav.step-indicator li:first-of-type {
-    border-left:none;
+nav.step-indicator li::after {
+    content: "";
+    position: absolute;
+    top: .15em;
+    right: .5em;
+    font-size: 1.5em;
 }
 
 nav.step-indicator li[status="done"] {
-    background-color: rgb(198, 216, 175);
+    background-color: rgb(98, 196, 139);
+}
+
+nav.step-indicator li[status="done"]::after {
+    content: "\2713";
 }
 
 nav.step-indicator li[status="current"] {
-    background-color: rgb(92, 128, 188);
+    background-color: rgb(90, 166, 218);
     color: rgb(236, 235, 228);
 }
 
+nav.step-indicator li[status="current"]::after {
+    content: "\2610";
+}
+
 nav.step-indicator li[status="progress"] {
-    background-color: rgb(238, 99, 82);
+    background-color: rgb(102, 102, 102);
     color: rgb(236, 235, 228);
+}
+
+nav.step-indicator li[status="progress"]::after {
+    content: "\2610";
 }
 
 nav.step-indicator ol > li > a {
     color: currentColor;
     text-decoration: none;
+}
+
+@media screen and (min-width: 440px) {
+    
+    nav.step-indicator li {
+        width: 25%;
+        font-size: .9em;
+        border-right: .1em solid rgb(255, 255, 255);
+        border-bottom: 0;
+    }
+    
+    nav.step-indicator li:last-of-type {
+        border-right: 0;
+    }
+    
 }
 
 .login {
@@ -687,6 +764,42 @@ nav.step-indicator ol > li > a {
     display: inline-block;
 }
 
+#modal-dimming {
+    display: none;
+}
+
+#modal-dimming:target {
+    position: fixed;
+    top:0;
+    left:0;
+    bottom: 0;
+    padding:0 2em;
+    right: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 0 1 auto;
+    align-items: center;
+}
+
+#modal-dimming::after {
+    content: "";
+    position: absolute;
+    top:0;
+    bottom: 0;
+    right:0;
+    left:0;
+    z-index: -1;
+}
+
+#modal-dimming:target::after {
+    background-color: rgba(0,0,0,.8);
+}
+
+#modal-dimming:target > * {
+    margin: 0 auto;
+}
+
 .loader {
     background-color: transparent;
     animation: spinner-loader 1s infinite linear;
@@ -714,32 +827,50 @@ nav.step-indicator ol > li > a {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ee6352', endColorstr='#f8b707',GradientType=1 );
 }
 
+.loader.in-out {
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    background-color: rgb(238, 99, 82);
+    animation: spinner-in-out 1.2s infinite linear;
+}
+
 /* Keyframe animations */
 
 @keyframes shake {
     from, to {
-        -webkit-transform: translate3d(0, 0, 0);
         transform: translate3d(0, 0, 0);
     }
     
     10%, 30%, 50%, 70%, 90% {
-        -webkit-transform: translate3d(-.3em, 0, 0);
         transform: translate3d(-.3em, 0, 0);
     }
     
     20%, 40%, 60%, 80% {
-        -webkit-transform: translate3d(.3em, 0, 0);
         transform: translate3d(.3em, 0, 0);
     }
 }
 
 @keyframes spinner-loader {
     0% {
-        -webkit-transform: rotate(0deg);
         transform: rotate(0deg);
     }
     100% {
-        -webkit-transform: rotate(360deg);
         transform: rotate(360deg);
+    }
+}
+
+@keyframes spinner-in-out {
+    0% {
+        opacity:1;
+        transform: scale(1, 1);
+    }
+    50% {
+        opacity:.2;
+        transform: scale(.5, .5);
+    }
+    100% {
+        opacity:1;
+        transform: scale(1, 1);
     }
 }
