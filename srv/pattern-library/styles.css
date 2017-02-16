@@ -46,6 +46,7 @@ p {
 form {
     display: flex;
     flex-wrap: wrap;
+    flex: 0 1 auto;
     background-color: rgb(67, 72, 76);
     color: rgb(236, 235, 228);
     width: 100%;
@@ -66,14 +67,6 @@ form.validate-form:valid::after {
 
 form.validate-form input:invalid {
     background-color: rgb(102, 102, 102);
-}
-
-.login {
-    max-width: 30em;
-}
-
-.login form {
-    box-shadow: 0 .5em .8em 0 rgba(67, 72, 76, .7);
 }
 
 form label,
@@ -112,7 +105,8 @@ textarea:focus {
     border: .1em solid rgb(91, 214, 211);
 }
 
-input[type="checkbox"] {
+input[type="checkbox"],
+input[type="radio"]{
     flex-basis: auto;
     margin: 0 .5em 0 0;
     position: absolute;
@@ -163,14 +157,13 @@ button[type="submit"]:focus {
 }
 
 figure {
-    max-width: 100vw;
-    max-height: 100vh;
-    margin: 0;
+    margin: 1em auto;
     padding: 0;
     box-sizing: border-box;
     color: rgb(58, 48, 66);
     position: relative;
-    overflow: hidden;
+    max-width: max-content;
+    max-height: 100vh;
 }
 
 figure a {
@@ -178,14 +171,16 @@ figure a {
 }
 
 figure p {
-    max-width: 20em;
+    max-width: 30em;
     margin: 0 auto .5em;
 }
 
 figure img {
-    min-width: 100vw;
+    min-width: auto;
+    max-height: 100vh;
     margin: 0;
     padding: 0;
+    vertical-align: bottom;
 }
 
 figure figcaption {
@@ -205,9 +200,21 @@ figure footer {
     text-align: right;
 }
 
+figure.full-page {
+    max-width: 100vw;
+    max-height: 100vh;
+    overflow: hidden;
+}
+
+figure.full-page img {
+    min-width: 100%;
+    max-height: 100%;
+}
+
 nav {
     display: flex;
     flex-wrap: wrap;
+    flex: 0 1 auto;
 }
 
 nav h1 {
@@ -220,6 +227,7 @@ nav ul {
     padding: 0;
     display: flex;
     flex-wrap: wrap;
+    flex: 0 1 auto;
 }
 
 nav li {
@@ -246,10 +254,25 @@ nav li > ul {
     display: none;
     position: static;
     z-index: 10;
-    width: 100%;
     font-size: .8em;
     box-sizing: border-box;
     background-color: rgb(102, 102, 102);
+}
+
+nav li {
+    position: relative;
+}
+
+nav li.has-submenu a {
+    padding-right: 2.5em;
+}
+
+nav li.has-submenu > a::after {
+    content: "\2193";
+    color: rgb(244, 244, 244);
+    position: absolute;
+    right:1em;
+    top:1em;
 }
 
 nav a:hover + ul,
@@ -260,10 +283,34 @@ nav li:hover a + ul {
 
 nav li li {
     background-color: rgb(102, 102, 102);
+    flex-basis: 100%;
 }
 
 nav li > ul a {
     padding-left: 2.5em;
+}
+
+@media screen and (min-width: 440px) {
+    
+    nav li {
+        flex-basis: auto;
+    }
+    
+    nav a {
+        padding: 1em 1.5em;
+    }
+    
+    nav li > ul {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 100%;
+    }
+    
+    nav li > ul a {
+        padding-left: 1em;
+    }
+    
 }
 
 fieldset {
@@ -271,22 +318,35 @@ fieldset {
     padding: 0;
 }
 
-fieldset legend {
-    margin-bottom: 1em;
-    padding: 0;
+fieldset.rating {
+    max-width: 20rem;
 }
 
-fieldset div {
-    display: flex;
-    flex-wrap: wrap;
+fieldset legend {
+    margin-bottom: 1em;
+    font-size: 1.3em;
+    font-weight: bold;
+    padding: 0;
+    flex-basis: 100%;
 }
 
 fieldset label {
-    flex-grow: 1;
-    display: flex;
+    display: inline-flex;
     flex-wrap: wrap;
+    flex: 0 1 auto;
     text-align: center;
     cursor: pointer;
+    width: 40%;
+    margin: .5em;
+    box-sizing: border-box;
+    padding: .5em;
+    background-color: rgb(235, 237, 238);
+    border: .1em solid transparent;
+    min-width: min-content;
+}
+
+.rating input[type="radio"]:focus + label {
+    border: .1em solid rgb(98, 196, 139);
 }
 
 fieldset label:hover svg {
@@ -306,13 +366,10 @@ fieldset svg {
     flex-basis: 100%;
     align-self: flex-start;
     margin: .5em auto;
+    transition: opacity .3s ease-in-out;
 }
 
-fieldset input[name="rating"] {
-    display: none;
-}
-
-fieldset input:checked + svg {
+fieldset input:checked + label > svg {
     opacity: 1;
 }
 
@@ -439,6 +496,8 @@ article.media-item:first-of-type > p {
     margin-bottom: 0;
     padding: 1em;
     display: flex;
+    flex-wrap: wrap;
+    flex: 0 1 auto;
 }
 
 .chat li:nth-child(odd) {
@@ -498,33 +557,33 @@ article.media-item:first-of-type > p {
 nav.step-indicator {
     max-width: 35em;
     padding: 1em;
-    background-color: rgb(236, 235, 228);
+    background-color: rgb(255, 255, 255);
 }
 
 nav.step-indicator > h1 {
     margin-bottom: 1em;
     font-size: 1.3em;
     text-transform: uppercase;
-    color: rgb(58, 48, 66);
 }
 
 nav.step-indicator > progress {
     width: 100%;
     height: 2em;
     border: 0;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(98, 196, 139);
 }
 
 nav.step-indicator > progress::-webkit-progress-bar {
-    background-color: rgb(238, 99, 82);
+    background-color: rgb(102, 102, 102);
 }
 nav.step-indicator > progress::-webkit-progress-value {
-    background-color: rgb(198, 216, 175);
+    background-color: rgb(98, 196, 139);
 }
 
 nav.step-indicator ol {
     display: flex;
     flex-wrap: wrap;
+    flex: 0 1 auto;
     width: 100%;
     margin-top: 2em;
     font-size: .6em;
@@ -564,6 +623,14 @@ nav.step-indicator li[status="progress"] {
 nav.step-indicator ol > li > a {
     color: currentColor;
     text-decoration: none;
+}
+
+.login {
+    max-width: 30em;
+}
+
+.login form {
+    box-shadow: 0 .5em .8em 0 rgba(67, 72, 76, .7);
 }
 
 .random-bg {
@@ -676,11 +743,3 @@ nav.step-indicator ol > li > a {
         transform: rotate(360deg);
     }
 }
-
-/* Sources
-- CSS organizer: http://csscomb.com/online
-- Autoprefixer tool: http://www.cssdrive.com/cssautoprefixer/
-- CSS animations: https://daneden.github.io/animate.css/
-- Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
-- Progress bar styling: https://css-tricks.com/html5-progress-element/
- */
