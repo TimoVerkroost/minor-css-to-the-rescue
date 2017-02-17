@@ -796,8 +796,10 @@ nav.step-indicator ol > li > a {
     background-color: rgba(0,0,0,.8);
 }
 
-#modal-dimming:target > * {
+#modal-dimming:target > .inner {
     margin: 0 auto;
+    max-width: 20em;
+    background-color: rgb(67, 72, 76);
 }
 
 .loader {
