@@ -197,7 +197,7 @@ figure p {
 }
 
 figure img {
-    min-width: auto;
+    min-width: 0;
     max-height: 100vh;
     margin: 0;
     padding: 0;
@@ -835,6 +835,13 @@ nav.step-indicator ol > li > a {
     border-radius: 50%;
     background-color: rgb(238, 99, 82);
     animation: spinner-in-out 1.2s infinite linear;
+}
+
+.loader.svg {
+    width: 3em;
+    height: 3em;
+    background: url("images/loading.svg") no-repeat;
+    background-size: contain;
 }
 
 /* Keyframe animations */
