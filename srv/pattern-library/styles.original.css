@@ -1,13 +1,24 @@
 /* Load font form Google Fonts, can do it local if needed */
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,700');
+
+@font-face {
+    font-family: Ampersand;
+    src:
+            local('Baskerville-Italic'),
+            local('GoudyOldStyleT-Italic'),
+            local('Garamond-Italic'),
+            local('Palatino-Italic');
+    unicode-range: U+26;
+}
+
 html,
 body {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
-    font-size: 16px;
+    font-size: 1em;
     min-height: 100%;
-    background-color: #f4f4f4;
-    color: #27292b;
+    background-color: rgb(244, 244, 244);
+    color: rgb(39, 41, 43);
     line-height: 1.4;
     padding: 0;
     margin: 0;
@@ -19,6 +30,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     padding: 0 1em;
+    position: relative;
 }
 
 body > h1 {
@@ -35,19 +47,28 @@ iframe {
 }
 
 a {
-    color: #ECEBE4;
+    color: rgb(236, 235, 228);
     transition: color .5s ease;
+}
+
+h2 > a {
+    color: rgb(39, 41, 43);
 }
 
 p {
     max-width: 40em;
 }
 
+h2 {
+    font-family: Ampersand, 'Roboto', sans-serif;
+}
+
 form {
     display: flex;
     flex-wrap: wrap;
-    background-color: #43484C;
-    color: #ECEBE4;
+    flex: 0 1 auto;
+    background-color: rgb(67, 72, 76);
+    color: rgb(236, 235, 228);
     width: 100%;
     padding: 1em;
     box-sizing: border-box;
@@ -56,8 +77,8 @@ form {
 
 form.validate-form:valid::after {
     content: "\2713  Alle velden zijn goed ingevuld je kan verder.";
-    background-color: #62c48b;
-    color: #28292D;
+    background-color: rgb(98, 196, 139);
+    color: rgb(40, 41, 45);
     display: block;
     width: 100%;
     margin-top: 1em;
@@ -66,14 +87,6 @@ form.validate-form:valid::after {
 
 form.validate-form input:invalid {
     background-color: rgb(102, 102, 102);
-}
-
-.login {
-    max-width: 30em;
-}
-
-.login form {
-    box-shadow: 0 8px 14px 0 rgba(67, 72, 76, .7);
 }
 
 form label,
@@ -101,18 +114,19 @@ textarea {
     margin: 0 0 .5em;
     font-size: 1em;
     flex-basis: 100%;
-    background-color: #43484C;
-    color: #F4F4F4;
-    border: 1px solid #F4F4F4;
+    background-color: rgb(67, 72, 76);
+    color: rgb(244, 244, 244);
+    border: .1em solid rgb(244, 244, 244);
 }
 
 input:focus,
 textarea:focus {
     outline: none;
-    border: 1px solid #5BD6D3;
+    border: .1em solid rgb(91, 214, 211);
 }
 
-input[type="checkbox"] {
+input[type="checkbox"],
+input[type="radio"]{
     flex-basis: auto;
     margin: 0 .5em 0 0;
     position: absolute;
@@ -128,17 +142,17 @@ input[type="checkbox"] + label::before {
     text-align: center;
     margin-right: .5em;
     border-radius: 0;
-    border: 1px solid #D4D4D4;
+    border: .1em solid rgb(212, 212, 212);
     line-height: 1em;
 }
 
 input[type="checkbox"]:checked + label::before {
     content: '\2713';
-    color: #62C48B;
+    color: rgb(98, 196, 139);
 }
 
 input[type="checkbox"]:focus + label::before {
-    box-shadow: 0 0 .1em .1em #5BD6D3;
+    box-shadow: 0 0 .1em .1em rgb(91, 214, 211);
 }
 
 button[type="submit"] {
@@ -148,7 +162,7 @@ button[type="submit"] {
     text-transform: uppercase;
     font-weight: 700;
     width: 100%;
-    background-color: #E04900;
+    background-color: rgb(224, 73, 0);
     color: currentColor;
     transition: background-color .5s ease, color .5s ease;
     cursor: pointer;
@@ -157,35 +171,37 @@ button[type="submit"] {
 
 button[type="submit"]:hover,
 button[type="submit"]:focus {
-    background-color: #E46B32;
+    background-color: rgb(228, 107, 50);
     color: currentColor;
-    outline-color: #2ECC71;
+    outline-color: rgb(46, 204, 113);
 }
 
 figure {
-    max-width: 100vw;
-    max-height: 100vh;
-    margin: 0;
+    margin: 1em auto;
     padding: 0;
     box-sizing: border-box;
-    color: #3A3042;
+    color: rgb(58, 48, 66);
     position: relative;
-    overflow: hidden;
+    max-width: max-content;
+    max-height: 100vh;
 }
 
 figure a {
-    color: #ECEBE4;
+    color: rgb(236, 235, 228);
+    border: 1.3em solid transparent;
 }
 
 figure p {
-    max-width: 20em;
+    max-width: 30em;
     margin: 0 auto .5em;
 }
 
 figure img {
-    min-width: 100vw;
+    min-width: 0;
+    max-height: 100vh;
     margin: 0;
     padding: 0;
+    vertical-align: bottom;
 }
 
 figure figcaption {
@@ -196,7 +212,7 @@ figure figcaption {
     width: 100%;
     padding: 1em;
     background-color: rgba(102, 102, 102, .7);
-    color: #ECEBE4;
+    color: rgb(236, 235, 228);
     box-sizing: border-box;
 }
 
@@ -205,9 +221,21 @@ figure footer {
     text-align: right;
 }
 
+figure.full-page {
+    max-width: 100vw;
+    max-height: 100vh;
+    overflow: hidden;
+}
+
+figure.full-page img {
+    min-width: 100%;
+    max-height: 100%;
+}
+
 nav {
     display: flex;
     flex-wrap: wrap;
+    flex: 0 1 auto;
 }
 
 nav h1 {
@@ -220,9 +248,10 @@ nav ul {
     padding: 0;
     display: flex;
     flex-wrap: wrap;
+    flex: 0 1 auto;
 }
 
-nav ul li {
+nav li {
     text-align: left;
     position: relative;
     transition: background-color .5s ease;
@@ -230,40 +259,79 @@ nav ul li {
     flex-basis: 100%;
 }
 
-nav ul li a:hover,
-nav ul li a:focus {
-    background-color: #EE6352;
+nav a:hover,
+nav a:focus {
+    background-color: rgb(238, 99, 82);
 }
 
-nav ul li a {
+nav a {
     text-decoration: none;
     display: block;
     padding: 1em;
-    color: #ECEBE4;
+    color: rgb(236, 235, 228);
 }
 
-nav ul li > ul {
+nav li > ul {
     display: none;
     position: static;
     z-index: 10;
-    width: 100%;
     font-size: .8em;
     box-sizing: border-box;
     background-color: rgb(102, 102, 102);
 }
 
-nav ul li a:hover + ul,
-nav ul li a:focus + ul,
-nav ul li:hover a + ul {
+nav li {
+    position: relative;
+}
+
+nav li.has-submenu a {
+    padding-right: 2.5em;
+}
+
+nav li.has-submenu > a::after {
+    content: "\2193";
+    color: rgb(244, 244, 244);
+    position: absolute;
+    right:1em;
+    top:1em;
+}
+
+nav a:hover + ul,
+nav a:focus + ul,
+nav li:hover a + ul {
     display: block;
 }
 
-nav ul li ul li {
-    background-color: #666666;
+nav li li {
+    background-color: rgb(102, 102, 102);
+    flex-basis: 100%;
 }
 
-nav ul li > ul li a {
+nav li > ul a {
     padding-left: 2.5em;
+}
+
+@media screen and (min-width: 440px) {
+    
+    nav li {
+        flex-basis: auto;
+    }
+    
+    nav a {
+        padding: 1em 1.5em;
+    }
+    
+    nav li > ul {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 100%;
+    }
+    
+    nav li > ul a {
+        padding-left: 1em;
+    }
+    
 }
 
 fieldset {
@@ -271,30 +339,53 @@ fieldset {
     padding: 0;
 }
 
-fieldset legend {
-    margin-bottom: 1em;
-    padding: 0;
+fieldset.rating {
+    max-width: 20rem;
 }
 
-fieldset div {
-    display: flex;
-    flex-wrap: wrap;
+fieldset legend {
+    margin-bottom: 1em;
+    font-size: 1.3em;
+    font-weight: bold;
+    padding: 0;
+    flex-basis: 100%;
 }
 
 fieldset label {
-    flex-grow: 1;
-    display: flex;
+    display: inline-flex;
     flex-wrap: wrap;
+    flex: 0 1 auto;
     text-align: center;
     cursor: pointer;
+    width: 40%;
+    margin: .5em;
+    box-sizing: border-box;
+    padding: .5em;
+    background-color: rgb(235, 237, 238);
+    border: .1em solid transparent;
+    min-width: min-content;
+}
+
+.rating input[type="radio"]:focus + label {
+    border: .1em solid rgb(98, 196, 139);
+}
+
+.rating span {
+    transform: scale(0);
+    transition: .5s cubic-bezier(.54,-0.5,.41,1.34) transform;
+}
+
+.rating label:hover > span {
+    transform: scale(1);
+}
+
+.rating input:focus + label > span {
+    transform: scale(1);
 }
 
 fieldset label:hover svg {
-    -webkit-animation-duration: 1s;
     animation-duration: 1s;
-    -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
-    -webkit-animation-name: shake;
     animation-name: shake;
 }
 
@@ -309,26 +400,23 @@ fieldset svg {
     flex-basis: 100%;
     align-self: flex-start;
     margin: .5em auto;
+    transition: opacity .3s ease-in-out;
 }
 
-fieldset input[name="rating"] {
-    display: none;
-}
-
-fieldset input:checked + svg {
+fieldset input:checked + label > svg {
     opacity: 1;
 }
 
 article.media-item {
     max-width: 30em;
-    color: #3A3042;
+    color: rgb(58, 48, 66);
     position: relative;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     flex: 0 1 auto;
     flex-wrap: wrap;
     padding: 1em;
-    border-bottom: 1px solid #666666;
+    border-bottom: 0.1em solid rgb(102, 102, 102);
 }
 
 article.media-item:nth-of-type(n+2) p {
@@ -336,21 +424,38 @@ article.media-item:nth-of-type(n+2) p {
 }
 
 article.media-item:nth-of-type(even) {
-    background-color: #F9F9F9;
+    background-color: rgb(249, 249, 249);
 }
 
 article.media-item:nth-of-type(n+2) img {
-    flex-basis: 20%;
-    max-width: 20%;
+    flex-basis: 100%;
+    max-width: 100%;
     box-sizing: border-box;
 }
 
 article.media-item:nth-of-type(n+2) h1 {
-    flex-basis: 80%;
-    max-width: 80%;
-    margin-top: 0;
-    padding: 0 0 0 0.5em;
+    flex-basis: 100%;
+    max-width: 100%;
+    margin: .5em 0 0 0;
+    padding: 0;
     box-sizing: border-box;
+}
+
+@media screen and (min-width: 400px) {
+    
+    article.media-item:nth-of-type(n+2) img {
+        flex-basis: 30%;
+        max-width: 30%;
+        box-sizing: border-box;
+    }
+    
+    article.media-item:nth-of-type(n+2) h1 {
+        flex-basis: 70%;
+        max-width: 70%;
+        margin: 0;
+        padding: 0 0 0 0.5em;
+    }
+    
 }
 
 article.media-item > h1 {
@@ -361,7 +466,7 @@ article.media-item > h1 {
 }
 
 article.media-item h1 > a {
-    color: #3A3042;
+    color: rgb(58, 48, 66);
     text-decoration: none;
 }
 
@@ -393,8 +498,8 @@ article.media-item:first-of-type > p {
 }
 
 .chat {
-    border: .1em solid #43484C;
-    border-top: 1.5em solid #43484C;
+    border: .1em solid rgb(67, 72, 76);
+    border-top: 1.5em solid rgb(67, 72, 76);
     max-width: 20em;
 }
 
@@ -403,13 +508,15 @@ article.media-item:first-of-type > p {
     margin: 0;
     padding: 1em 0 0;
     max-width: 100%;
-    background-color: #f4f4f4;
+    background-color: rgb(244, 244, 244);
     border-top: 0;
     border-bottom: 0;
+    max-height: 15em;
+    overflow: scroll;
 }
 
 .chat ol + form {
-    border-top: .3em solid #ECEBE4;
+    border-top: .3em solid rgb(236, 235, 228);
     padding: 1em 1em;
 }
 
@@ -425,6 +532,8 @@ article.media-item:first-of-type > p {
     margin-bottom: 0;
     padding: 1em;
     display: flex;
+    flex-wrap: wrap;
+    flex: 0 1 auto;
 }
 
 .chat li:nth-child(odd) {
@@ -433,7 +542,7 @@ article.media-item:first-of-type > p {
 }
 
 .chat li:nth-child(odd) > p {
-    background-color: #C6D8AF;
+    background-color: rgb(198, 216, 175);
     border-radius: 1em 1.5em 0 1.5em;
 }
 
@@ -443,7 +552,7 @@ article.media-item:first-of-type > p {
 }
 
 .chat li:nth-child(even) > p {
-    background-color: #ECEBE4;
+    background-color: rgb(236, 235, 228);
     border-radius: 1.5em 1em 1.5em 0;
 }
 
@@ -456,7 +565,7 @@ article.media-item:first-of-type > p {
 .chat li p[data-status="READ"] {
     padding: .5em;
     margin: 0;
-    color: #62C48B;
+    color: rgb(98, 196, 139);
     font-style: normal;
     display: inline-block;
 }
@@ -471,7 +580,7 @@ article.media-item:first-of-type > p {
     display: inline-block;
     padding: .5em;
     margin: 0;
-    color: #62C48B;
+    color: rgb(98, 196, 139);
     font-style: normal;
 }
 
@@ -484,67 +593,93 @@ article.media-item:first-of-type > p {
 nav.step-indicator {
     max-width: 35em;
     padding: 1em;
-    background-color: #ECEBE4;
+    background-color: rgb(255, 255, 255);
 }
 
 nav.step-indicator > h1 {
     margin-bottom: 1em;
     font-size: 1.3em;
     text-transform: uppercase;
-    color: #3A3042;
 }
 
 nav.step-indicator > progress {
     width: 100%;
     height: 2em;
     border: 0;
-    background-color: #fff;
+    background-color: rgb(102, 102, 102));
 }
 
 nav.step-indicator > progress::-webkit-progress-bar {
-    background-color: #EE6352;
+    background-color: rgb(102, 102, 102);
 }
 nav.step-indicator > progress::-webkit-progress-value {
-    background-color: #C6D8AF;
+    background-color: rgb(98, 196, 139);
 }
 
 nav.step-indicator ol {
     display: flex;
     flex-wrap: wrap;
+    flex: 0 1 auto;
     width: 100%;
     margin-top: 2em;
-    font-size: .6em;
+    font-size: 1em;
     list-style-type: none;
     padding: 0;
 }
 
-nav.step-indicator li {
-    padding: 1em 1em;
-    background-color: #ECEBE4;
-    text-align: left;
-    flex-grow: 1;
-    color: #3A3042;
-    width: 25%;
-    box-sizing: border-box;
-    border-left:.2em solid #3A3042;
+nav.step-indicator a {
+    padding: 0;
 }
 
-nav.step-indicator li:first-of-type {
-    border-left:none;
+nav.step-indicator a:hover,
+nav.step-indicator a:focus {
+    background-color: inherit;
+    outline-color: rgb(238, 99, 82);
+}
+
+nav.step-indicator li {
+    background-color: rgb(236, 235, 228);
+    text-align: left;
+    flex-grow: 1;
+    color: rgb(236, 235, 228);
+    box-sizing: border-box;
+    position: relative;
+    padding: .5em;
+    border-bottom: .1em solid rgb(255, 255, 255);
+}
+
+nav.step-indicator li::after {
+    content: "";
+    position: absolute;
+    top: .15em;
+    right: .5em;
+    font-size: 1.5em;
 }
 
 nav.step-indicator li[status="done"] {
-    background-color: #C6D8AF;
+    background-color: rgb(98, 196, 139);
+}
+
+nav.step-indicator li[status="done"]::after {
+    content: "\2713";
 }
 
 nav.step-indicator li[status="current"] {
-    background-color: #5C80BC;
-    color: #ECEBE4;
+    background-color: rgb(90, 166, 218);
+    color: rgb(236, 235, 228);
+}
+
+nav.step-indicator li[status="current"]::after {
+    content: "\2610";
 }
 
 nav.step-indicator li[status="progress"] {
-    background-color: #EE6352;
-    color: #ECEBE4;
+    background-color: rgb(102, 102, 102);
+    color: rgb(236, 235, 228);
+}
+
+nav.step-indicator li[status="progress"]::after {
+    content: "\2610";
 }
 
 nav.step-indicator ol > li > a {
@@ -552,8 +687,31 @@ nav.step-indicator ol > li > a {
     text-decoration: none;
 }
 
+@media screen and (min-width: 440px) {
+    
+    nav.step-indicator li {
+        width: 25%;
+        font-size: .9em;
+        border-right: .1em solid rgb(255, 255, 255);
+        border-bottom: 0;
+    }
+    
+    nav.step-indicator li:last-of-type {
+        border-right: 0;
+    }
+    
+}
+
+.login {
+    max-width: 30em;
+}
+
+.login form {
+    box-shadow: 0 .5em .8em 0 rgba(67, 72, 76, .7);
+}
+
 .random-bg {
-    color: #ECEBE4;
+    color: rgb(236, 235, 228);
     padding: .5em 1em;
     max-width: max-content;
     background-color: rgb(102, 102, 102);
@@ -593,7 +751,7 @@ nav.step-indicator ol > li > a {
 }
 
 [aria-label="Address, current step"] {
-    color: #5C80BC;
+    color: rgb(92, 128, 188);
     font-weight: 800;
 }
 
@@ -604,6 +762,44 @@ nav.step-indicator ol > li > a {
 
 .component .loader {
     display: inline-block;
+}
+
+#modal-dimming {
+    display: none;
+}
+
+#modal-dimming:target {
+    position: fixed;
+    top:0;
+    left:0;
+    bottom: 0;
+    padding:0 2em;
+    right: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 0 1 auto;
+    align-items: center;
+}
+
+#modal-dimming::after {
+    content: "";
+    position: absolute;
+    top:0;
+    bottom: 0;
+    right:0;
+    left:0;
+    z-index: -1;
+}
+
+#modal-dimming:target::after {
+    background-color: rgba(0,0,0,.8);
+}
+
+#modal-dimming:target > .inner {
+    margin: 0 auto;
+    max-width: 20em;
+    background-color: rgb(67, 72, 76);
 }
 
 .loader {
@@ -619,7 +815,7 @@ nav.step-indicator ol > li > a {
     width: 3em;
     height: 3em;
     border-radius: 50%;
-    border-top: .2em solid #EE6352;
+    border-top: .2em solid rgb(238, 99, 82);
 }
 
 .loader.filled {
@@ -633,40 +829,57 @@ nav.step-indicator ol > li > a {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ee6352', endColorstr='#f8b707',GradientType=1 );
 }
 
+.loader.in-out {
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    background-color: rgb(238, 99, 82);
+    animation: spinner-in-out 1.2s infinite linear;
+}
+
+.loader.svg {
+    width: 3em;
+    height: 3em;
+    background: url("images/loading.svg") no-repeat;
+    background-size: contain;
+}
+
 /* Keyframe animations */
 
 @keyframes shake {
     from, to {
-        -webkit-transform: translate3d(0, 0, 0);
         transform: translate3d(0, 0, 0);
     }
     
     10%, 30%, 50%, 70%, 90% {
-        -webkit-transform: translate3d(-5px, 0, 0);
-        transform: translate3d(-5px, 0, 0);
+        transform: translate3d(-.3em, 0, 0);
     }
     
     20%, 40%, 60%, 80% {
-        -webkit-transform: translate3d(5px, 0, 0);
-        transform: translate3d(5px, 0, 0);
+        transform: translate3d(.3em, 0, 0);
     }
 }
 
 @keyframes spinner-loader {
     0% {
-        -webkit-transform: rotate(0deg);
         transform: rotate(0deg);
     }
     100% {
-        -webkit-transform: rotate(360deg);
         transform: rotate(360deg);
     }
 }
 
-/* Sources
-- CSS organizer: http://csscomb.com/online
-- Autoprefixer tool: http://www.cssdrive.com/cssautoprefixer/
-- CSS animations: https://daneden.github.io/animate.css/
-- Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
-- Progress bar styling: https://css-tricks.com/html5-progress-element/
- */
+@keyframes spinner-in-out {
+    0% {
+        opacity:1;
+        transform: scale(1, 1);
+    }
+    50% {
+        opacity:.2;
+        transform: scale(.5, .5);
+    }
+    100% {
+        opacity:1;
+        transform: scale(1, 1);
+    }
+}
