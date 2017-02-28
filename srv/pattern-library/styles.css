@@ -255,7 +255,7 @@ figure.full-image {
 }
 
 figure.full-image-max-content {
-    display: inline-block;
+    display: block;
     max-width: max-content;
 }
 
