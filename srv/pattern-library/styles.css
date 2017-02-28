@@ -249,6 +249,16 @@ figure footer {
     text-align: right;
 }
 
+figure.full-image {
+    display: inline-block;
+    max-width: none;
+}
+
+figure.full-image-max-content {
+    display: inline-block;
+    max-width: max-content;
+}
+
 figure.full-page {
     max-width: 100vw;
     max-height: 100vh;
